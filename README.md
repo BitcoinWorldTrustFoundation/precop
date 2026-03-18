@@ -104,7 +104,7 @@ Let $P$ be the internal **NUMS** key (nothing-up-my-sleeve) defined as:
 $$P = \mathtt{0x50929b74c1a04954b78b4b6035e97a5e078a5a0f28ec96d547bfee9ace803ac0}$$
 
 The final output public key $Q_t$ for state $\vec{S}_t$ is tweaked by the Merkle Root $M_t$ of the 6-leaf MAST:
-$$Q_t = P + \text{tagged\_hash}(\text{"TapTweak"}, P \parallel M_t)G$$
+$$Q_t = P + \mathrm{tagged\_hash}(\mathrm{TapTweak}, P \parallel M_t)G$$
 
 **The Axiomatic Transition Theorem:** A state transition is valid if and only if the Simplicity Covenant verifies that $\vec{S}_{t+1} = \Upsilon(\vec{S}_t, I_t, W_t)$ and that the output UTXO is locked under $Q_{next}$ (derived from $\vec{S}_{t+1}$), where:
 - $\vec{S}_t$ is the current state vector.
@@ -256,7 +256,7 @@ To resolve the "Hot UTXO" contention bottleneck while maintaining full determini
 
 #### 1. Canonical Sequencing ($\Pi$)
 Let $\mathcal{B} = \{i_1, i_2, ..., i_k\}$ be a proposed batch of $k$ OPI-2 intents. To prevent the Resolver (the batch constructor) from strategically reordering intents to extract value (MEV), the execution sequence is determined by a deterministic permutation $\Pi$:
-$$\Pi(\mathcal{B}) = \text{sort\_lexicographical}(\{\text{SHA256}(i) \mid i \in \mathcal{B}\})$$
+$$\Pi(\mathcal{B}) = \mathrm{sort\_lexicographical}(\{\text{SHA256}(i) \mid i \in \mathcal{B}\})$$
 The IndexerClaw (LSVM) rejects any batch where the execution order deviates from this cryptographic sort.
 
 #### 2. Atomic Multi-State Transition ($\Upsilon^*$)
@@ -344,7 +344,7 @@ $$\Delta_y \cdot (R_x + \Delta_x) \approx R_y \cdot \Delta_x \pm \epsilon$$
 
 **Slippage Enforcement — Mandatory Partial Fill:** Per OPI-1 Rule 5, an `exe` operation whose requested $\Delta_x$ would cause the effective price to exceed the user's declared `slip` tolerance is **never outright rejected**. Instead, it is subject to a mandatory partial fill: the protocol computes the maximum $\Delta_x^* \leq \Delta_x$ such that the resulting price impact remains within the stated tolerance. Formally:
 
-$$\Delta_x^* = \max \left\{ \delta \leq \Delta_x \;\middle|\; \frac{R_y \cdot \delta}{R_x + \delta} \geq \Delta_y^{\min} \right\}$$
+$$\Delta_x^* = \max \left\lbrace \delta \leq \Delta_x \mid \frac{R_y \cdot \delta}{R_x + \delta} \geq \Delta_y^{\min} \right\rbrace$$
 
 where $\Delta_y^{\min} = \Delta_y^{\text{ideal}} \cdot (1 - \text{slip}/100)$. The partial fill quantity is validated via the same $u128$ inequality, guaranteeing no floating-point is introduced at any layer. This rule ensures continuous market liquidity and prevents griefing attacks that would stall execution by submitting orders designed to be unfillable.
 
@@ -501,7 +501,7 @@ where $E_y$, $E_n$ are the scaled exponentials provided by the IndexerClaw, $\te
 
 
 Truth is "extracted" rather than voted. An oracle vote $V$ is valid if and only if:
-$$\text{Hi64}(\text{SHA256}(\text{market\_id} \parallel \text{pubkey} \parallel \text{outcome} \parallel \text{nonce})) \le 2^{64-42} - 1$$
+$$\mathrm{Hi64}(\mathrm{SHA256}(\mathrm{market\_id} \parallel \mathrm{pubkey} \parallel \mathrm{outcome} \parallel \mathrm{nonce})) \le 2^{64-42} - 1$$
 This requires $\approx 4.4$ trillion hashes per vote, anchoring the market resolution in tangible energy. The Binohash cost is identity-bound insofar as stake UTXOs, key registration, and double-voting slashing are enforced by the covenant.
 
 
@@ -576,7 +576,7 @@ The W wrapped token (OpCodes 0x54/0x55/0x56) extends beyond oracle staking to pr
 
 **LMSR Witness Hints.** The witness builder (`compute_lmsr_hints_scaled`) provides integer-only exponential hints ($E_y$, $E_n$, $\Delta_{cost}$) that the covenant `tapdata_state.simf` verifies via the inequality:
 $$\Delta_{cost} \cdot T \leq (T + \epsilon) \cdot S$$
-where $T = E_y + E_n$, $S = 10^8$, and $\epsilon = 10^4$. The hints are computed as $E_y = \lfloor e^{q_{yes}/b} \times S \rfloor$ and $E_n = \lfloor e^{q_{no}/b} \times S \rfloor$, with $\Delta_{cost} = \lceil (C_{new} - C_{old}) \times \text{SHARE\_VALUE\_SATS} \rceil$ in raw satoshis.
+where $T = E_y + E_n$, $S = 10^8$, and $\epsilon = 10^4$. The hints are computed as $E_y = \lfloor e^{q_{yes}/b} \times S \rfloor$ and $E_n = \lfloor e^{q_{no}/b} \times S \rfloor$, with $\Delta_{cost} = \lceil (C_{new} - C_{old}) \times \mathrm{SHARE\_VALUE\_SATS} \rceil$ in raw satoshis.
 
 ---
 
