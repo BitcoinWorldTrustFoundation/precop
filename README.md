@@ -500,7 +500,7 @@ where $E_y$, $E_n$ are the scaled exponentials provided by the IndexerClaw, $\te
 ### 7.1. Binohash PoW ($W=42$)
 
 
-Truth is "extracted" rather than voted. An oracle vote $V$ is valid if and only if:
+Truth is "extracted" rather than voted, utilizing a thermodynamic proof-of-work mechanism derived from recent advancements in script-level transaction introspection [13]. An oracle vote $V$ is valid if and only if:
 $$\mathrm{Hi64}(\mathrm{SHA256}(\mathrm{market\_id} \parallel \mathrm{pubkey} \parallel \mathrm{outcome} \parallel \mathrm{nonce})) \le 2^{64-42} - 1$$
 This requires $\approx 4.4$ trillion hashes per vote, anchoring the market resolution in tangible energy. The Binohash cost is identity-bound insofar as stake UTXOs, key registration, and double-voting slashing are enforced by the covenant.
 
@@ -642,9 +642,12 @@ The protocol establishes that:
 
 [10] Lau, J. (2016). *BIP-114: Merkelized Abstract Syntax Tree (MAST)*. https://github.com/bitcoin/bips/blob/master/bip-0114.mediawiki
 
-[11] Zkao, et al. (2022). *UTXOracle: Deriving Fiat Price from Bitcoin UTXO Entropy*. Bitcoin-dev mailing list.
+[11] Zkao, et al. (2022). *UTXOracle: Deriving Fiat Price from Bitcoin UTXO Entropy*. Bitcoin-dev mailing list. https://utxo.live/oracle/license.php
 
 [12] Chepurnoy, A., et al. (2018). *Self-Reproducing Coins as Universal Turing Machine*.
+
+[13] Linus, R. (2024). *Binohash: Transaction Introspection Without Softforks*. ZeroSync / BitVM Research.
+
 ---
 
 *PRECOP Protocol v0.0.1*
