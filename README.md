@@ -1,6 +1,6 @@
 # PRECOP: Predictive Covenant Oracle Protocol
 
-[![Protocol Version](https://img.shields.io/badge/version-0.0.2--alpha-orange?style=for-the-badge&logo=bitcoin)](https://github.com/4n1s/precop)
+[![Protocol Version](https://img.shields.io/badge/version-0.1.0--alpha-orange?style=for-the-badge&logo=bitcoin)](https://github.com/4n1s/precop)
 [![Bitcoin L1](https://img.shields.io/badge/Blockchain-Bitcoin%20L1-blue?style=for-the-badge&logo=bitcoin)](https://bitcoin.org)
 [![Taproot Enabled](https://img.shields.io/badge/Feature-Taproot%20Enabled-success?style=for-the-badge)](https://bitcoin.org/en/taproot)
 [![Simplicity Powered](https://img.shields.io/badge/Engine-Simplicity%20Bit%20Machine-blueviolet?style=for-the-badge)](https://blockstream.com/simplicity/)
@@ -317,7 +317,7 @@ Canonical 31-byte State Vector:
 
 ---
 
-## 7. Lineage & Composition
+## 10. Lineage & Composition
 
 PRECOP is a vertical composition of proven L1 technologies:
 
@@ -331,6 +331,7 @@ PRECOP is a vertical composition of proven L1 technologies:
 ---
 
 ## 🔗 Resources
+- **Whitepaper**: [precop_whitepaper.pdf](./precop_whitepaper.pdf)
 - **Yellowpaper**: [precop_yellowpaper.pdf](./precop_yellowpaper.pdf)
 - **Covenant Source**: [simplicity-unchained](https://github.com/BitcoinWorldTrustfoundation/simplicity-unchained)
 - **Explorer**: [Precopscan]() (TBA)
@@ -338,4 +339,4 @@ PRECOP is a vertical composition of proven L1 technologies:
 
 ---
 
-*PRECOP Protocol v0.0.2 | Sovereign DeFi by Primitive Stacking*
+*PRECOP Protocol v0.1.0-alpha | Sovereign DeFi by Primitive Stacking*
